@@ -30,7 +30,6 @@ class App extends React.Component {
     this.spinners = [React.createRef(), React.createRef(), React.createRef()];
   }
 
-  // TODO test - returns value from 0 to 4
   get randomSymbol() {
     return Math.floor(Math.random() * 4);
   }
@@ -45,7 +44,6 @@ class App extends React.Component {
     }, startTimeOut)
   }
 
-  // TODO test - show stop button, hide start button, this.intervalId is number
   handleStart = () => {
     if (!this.intervalId) {
       this.setState({
@@ -58,7 +56,6 @@ class App extends React.Component {
     }
   };
 
-  // TODO test - show start button, hide stop button, this.intervalId is null
   handleStop = () => {
     if (this.intervalId) {
       this.setState({
@@ -89,9 +86,12 @@ class App extends React.Component {
     }, stopTimeOut);
   };
 
-  // TODO test results
+  getResults = () => {
+    return this.spinners.map(item => this.getImage(item));
+  };
+
   checkResult = () => {
-    const results = this.spinners.map(item => this.getImage(item));
+    const results = this.getResults();
     let reward = 0;
 
     if (results[0] === results[2]) {
